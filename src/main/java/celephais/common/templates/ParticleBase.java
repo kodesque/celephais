@@ -1,5 +1,7 @@
-package celephais.util;
+package celephais.common.templates;
 
+import celephais.api.IParticle;
+import celephais.util.particle.ParticleRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -21,7 +23,7 @@ public class ParticleBase extends Particle implements IParticle {
         }
 
         this.particleMaxAge = this.lifetime;
-        ResourceLocation texture = (ResourceLocation) ParticleRegistry.particleTextures.get(Util.getLowercaseClassName(this.getClass()));
+        ResourceLocation texture = (ResourceLocation) ParticleRegistry.particleTextures.get(this.getClass().getName().toLowerCase());
         TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(texture.toString());
         this.setParticleTexture(sprite);
         this.particleScale = 1.0F;

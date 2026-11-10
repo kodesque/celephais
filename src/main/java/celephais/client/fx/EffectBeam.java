@@ -1,5 +1,6 @@
 package celephais.client.fx;
 
+import celephais.common.templates.EffectBase;
 import celephais.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -9,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EffectBeam extends Effect {
+public class EffectBeam extends EffectBase {
     public double x2 = (double)0.0F;
     public double y2 = (double)0.0F;
     public double z2 = (double)0.0F;

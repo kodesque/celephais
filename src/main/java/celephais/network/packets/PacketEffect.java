@@ -1,6 +1,6 @@
-package celephais.util;
+package celephais.network.packets;
 
-import celephais.client.fx.FXRegistry;
+import celephais.util.fx.FXRegistry;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,14 +13,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.function.Function;
 
-public class MessageEffect implements IMessage {
+public class PacketEffect implements IMessage {
     public int id = 0;
     public NBTTagCompound tag = new NBTTagCompound();
 
-    public MessageEffect() {
+    public PacketEffect() {
     }
 
-    public MessageEffect(int id, NBTTagCompound tag) {
+    public PacketEffect(int id, NBTTagCompound tag) {
         this.tag = tag;
         this.id = id;
     }
@@ -35,12 +35,12 @@ public class MessageEffect implements IMessage {
         ByteBufUtils.writeTag(buf, this.tag);
     }
 
-    public static class MessageHolder implements IMessageHandler<MessageEffect, IMessage> {
+    public static class MessageHolder implements IMessageHandler<PacketEffect, IMessage> {
         public MessageHolder() {
         }
 
         @SideOnly(Side.CLIENT)
-        public IMessage onMessage(MessageEffect message, MessageContext ctx) {
+        public IMessage onMessage(PacketEffect message, MessageContext ctx) {
             Minecraft.getMinecraft().addScheduledTask(() -> ((Function) FXRegistry.effects.get(message.id)).apply(message.tag));
             return null;
         }

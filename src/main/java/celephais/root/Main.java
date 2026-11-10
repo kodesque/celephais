@@ -18,33 +18,25 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;;
         modid = Main.MODID,
         version = Main.VERSION,
         name = Main.MODNAME
-//        acceptedMinecraftVersions = "[1.12.2]"
 )
 public class Main {
     public static final String MODID = "celephais";
     public static final String VERSION = "1.0.1";
-    public static final String MODNAME = "Crissaegrim Aeternum";
+    public static final String MODNAME = "Celephais";
     @SidedProxy(
-            clientSide = "crissaegrim.network.proxy.ClientProxy",
-            serverSide = "crissaegrim.network.proxy.CommonProxy"
+            clientSide = "celephais.network.proxy.ClientProxy",
+            serverSide = "celephais.network.proxy.CommonProxy"
     )
     public static CommonProxy proxy;
     @Mod.Instance
     public static Main INSTANCE;
-    public static ModContainer CONTAINER;
 
     public Main() {
     }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        CONTAINER = Loader.instance().activeModContainer();
-        MinecraftForge.EVENT_BUS.register(new ModRegistryHandler());
-        MinecraftForge.EVENT_BUS.register(new ModEventHandler());
         proxy.preInit(event);
-
-        MinecraftForge.EVENT_BUS.register(new LibRegistry());
-        MinecraftForge.EVENT_BUS.register(new LibEvents());
     }
 
     @Mod.EventHandler

@@ -1,7 +1,9 @@
-package celephais.util;
+package celephais.util.particle;
 
+import celephais.common.templates.ParticleBase;
 import celephais.network.proxy.ClientProxy;
 import celephais.root.Main;
+import epicsquid.mysticallib.util.Util;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 

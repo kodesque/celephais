@@ -1,13 +1,12 @@
 package celephais.common.entity;
 
-import celephais.client.fx.Effect;
+import celephais.common.templates.EffectBase;
 import celephais.client.fx.EffectCut;
 import celephais.client.fx.EffectSlash;
-import celephais.client.fx.FXHandler;
+import celephais.util.fx.FXHandler;
 import celephais.events.ModRegistryHandler;
 import celephais.network.PacketHandler;
-import celephais.util.MessageEffect;
-import celephais.util.Util;
+import celephais.network.packets.PacketEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,8 +43,8 @@ public class EntitySlash extends Entity {
             this.posX = this.player.posX;
             this.posY = this.player.posY;
             this.posZ = this.player.posZ;
-            Effect slash = (new EffectSlash(this.player.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, 30.0F + Util.rand.nextFloat() * 120.0F, 2.0F, 1.5F, 120.0F).setPosition(x1, y1, z1).setMotion((x2 - x1) / (double)5.0F, (y2 - y1) / (double)5.0F, (z2 - z1) / (double)5.0F).setLife(5).setAdditive(true).setColor(0.35F, 0.35F, 1.0F, 1.0F);
-            PacketHandler.INSTANCE.sendToAll(new MessageEffect(FXHandler.FX_SLASH, slash.write()));
+            EffectBase slash = (new EffectSlash(this.player.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, 30.0F + Util.rand.nextFloat() * 120.0F, 2.0F, 1.5F, 120.0F).setPosition(x1, y1, z1).setMotion((x2 - x1) / (double)5.0F, (y2 - y1) / (double)5.0F, (z2 - z1) / (double)5.0F).setLife(5).setAdditive(true).setColor(0.35F, 0.35F, 1.0F, 1.0F);
+            PacketHandler.INSTANCE.sendToAll(new PacketEffect(FXHandler.FX_SLASH, slash.write()));
             double lx = this.player.posX + this.player.getLookVec().x * (double)2.0F;
             double ly = this.player.posY + (double)this.player.getEyeHeight() + this.player.getLookVec().y * (double)2.0F;
             double lz = this.player.posZ + this.player.getLookVec().z * (double)2.0F;
@@ -55,8 +54,8 @@ public class EntitySlash extends Entity {
                     e.hurtResistantTime = 0;
                     e.setRevengeTarget(this.player);
                     if (e.getHealth() > 0.0F) {
-                        Effect cut = (new EffectCut(this.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, Util.rand.nextFloat() * 360.0F).setColor(0.35F, 0.35F, 1.0F, 1.0F).setPosition(e.posX, e.posY + (double)(e.height / 2.0F), e.posZ).setAdditive(true).setLife(10);
-                        PacketHandler.INSTANCE.sendToAll(new MessageEffect(ModRegistryHandler.FX_CUT, cut.write()));
+                        EffectBase cut = (new EffectCut(this.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, Util.rand.nextFloat() * 360.0F).setColor(0.35F, 0.35F, 1.0F, 1.0F).setPosition(e.posX, e.posY + (double)(e.height / 2.0F), e.posZ).setAdditive(true).setLife(10);
+                        PacketHandler.INSTANCE.sendToAll(new PacketEffect(ModRegistryHandler.FX_CUT, cut.write()));
                     }
 
                     e.attackEntityFrom(DamageSource.causePlayerDamage(this.player), 6.0F);

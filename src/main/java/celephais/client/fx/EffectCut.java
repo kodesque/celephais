@@ -1,5 +1,6 @@
 package celephais.client.fx;
 
+import celephais.common.templates.EffectBase;
 import celephais.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -8,7 +9,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class EffectCut extends Effect {
+public class EffectCut extends EffectBase {
     public float yaw = 0.0F;
     public float pitch = 0.0F;
     public float slashAngle = 0.0F;

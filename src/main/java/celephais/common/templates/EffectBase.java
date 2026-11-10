@@ -1,4 +1,4 @@
-package celephais.client.fx;
+package celephais.common.templates;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
-public class Effect {
+public class EffectBase {
     public int lifetime = 0;
     public int maxLife = 0;
     public float r = 0.0F;
@@ -28,20 +28,20 @@ public class Effect {
     public boolean dead = false;
     public int dimId = 0;
 
-    public Effect() {
+    public EffectBase() {
     }
 
-    public Effect(int id) {
+    public EffectBase(int id) {
         this.dimId = id;
     }
 
-    public Effect setLife(int l) {
+    public EffectBase setLife(int l) {
         this.maxLife = l;
         this.lifetime = l;
         return this;
     }
 
-    public Effect setColor(float r, float g, float b, float a) {
+    public EffectBase setColor(float r, float g, float b, float a) {
         this.r = r;
         this.g = g;
         this.b = b;
@@ -49,7 +49,7 @@ public class Effect {
         return this;
     }
 
-    public Effect setPosition(double x, double y, double z) {
+    public EffectBase setPosition(double x, double y, double z) {
         this.px = x;
         this.py = y;
         this.pz = z;
@@ -59,14 +59,14 @@ public class Effect {
         return this;
     }
 
-    public Effect setMotion(double vx, double vy, double vz) {
+    public EffectBase setMotion(double vx, double vy, double vz) {
         this.vx = vx;
         this.vy = vy;
         this.vz = vz;
         return this;
     }
 
-    public Effect setAdditive(boolean additive) {
+    public EffectBase setAdditive(boolean additive) {
         this.additive = additive;
         return this;
     }

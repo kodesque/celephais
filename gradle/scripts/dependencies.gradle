@@ -55,8 +55,8 @@ dependencies {
     implementation (rfg.deobf("curse.maven:embers-extended-life-936489:9456400"))
     implementation (rfg.deobf("curse.maven:aetherworks-extended-life-1003576:6210095"))
 
-    implementation (rfg.deobf("curse.maven:crissaegrim-278058:2647376"))
-    implementation (rfg.deobf("curse.maven:mysticallib-277064:2633662"))
+    compileOnly (rfg.deobf("curse.maven:crissaegrim-278058:2647376"))
+//    implementation (rfg.deobf("curse.maven:mysticallib-277064:2633662"))
 
     // Example - Dependency descriptor:
     // 'com.google.code.gson:gson:2.8.6' << group: com.google.code.gson, name:gson, version:2.8.6

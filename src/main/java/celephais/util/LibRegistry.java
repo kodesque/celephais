@@ -1,15 +1,19 @@
 package celephais.util;
 
 
-import celephais.client.fx.ParticleFlame;
-import celephais.client.fx.ParticleGlitter;
-import celephais.client.fx.ParticleGlow;
-import celephais.client.fx.ParticleSmoke;
-import celephais.client.fx.ParticleSpark;
-import celephais.client.model.IModeledObject;
-import celephais.events.RegisterContentEvent;
-import celephais.events.RegisterParticleEvent;
+import celephais.client.particles.ParticleGlitter;
+import celephais.client.particles.ParticleGlow;
+import celephais.client.particles.ParticleSpark;
 import celephais.root.Main;
+import celephais.util.particle.ParticleRegistry;
+import epicsquid.mysticallib.event.RegisterContentEvent;
+import epicsquid.mysticallib.event.RegisterCustomModelsEvent;
+import epicsquid.mysticallib.event.RegisterParticleEvent;
+import epicsquid.mysticallib.model.BakedModelColorWrapper;
+import epicsquid.mysticallib.model.CustomModelLoader;
+import epicsquid.mysticallib.model.ICustomModeledObject;
+import epicsquid.mysticallib.model.IModeledObject;
+import epicsquid.mysticallib.model.block.BakedModelBlockUnlitWrapper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -80,13 +84,13 @@ public class LibRegistry {
     public static void registerEntity(Class<? extends Entity> entity, int eggColor1, int eggColor2) {
         String[] nameParts = entity.getTypeName().split("\\.");
         String className = nameParts[nameParts.length - 1];
-        EntityRegistry.registerModEntity(new ResourceLocation(activeModid + ":" + Util.lowercase(className)), entity, Util.lowercase(className), entityId++, Main.INSTANCE, 64, 1, true, eggColor1, eggColor2);
+        EntityRegistry.registerModEntity(new ResourceLocation(activeModid + ":" + className.toLowerCase()), entity, className.toLowerCase(), entityId++, Main.INSTANCE, 64, 1, true, eggColor1, eggColor2);
     }
 
     public static void registerEntity(Class<? extends Entity> entity) {
         String[] nameParts = entity.getTypeName().split("\\.");
         String className = nameParts[nameParts.length - 1];
-        EntityRegistry.registerModEntity(new ResourceLocation(activeModid + ":" + Util.lowercase(className)), entity, Util.lowercase(className), entityId++, Main.INSTANCE, 64, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(activeModid + ":" + className.toLowerCase()), entity, className.toLowerCase(), entityId++, Main.INSTANCE, 64, 1, true);
     }
 
     public static void setActiveMod(@Nonnull String modid, @Nonnull ModContainer container) {
@@ -179,7 +183,7 @@ public class LibRegistry {
             ModelResourceLocation mrl = new ModelResourceLocation(r.toString().replace("#handlers", ""), "handlers");
             IBakedModel bakedModel = (IBakedModel)event.getModelRegistry().getObject(mrl);
             if (bakedModel != null) {
-                IModel m = (IModel)CustomModelLoader.itemmodels.get(r);
+                IModel m = (IModel) CustomModelLoader.itemmodels.get(r);
                 event.getModelRegistry().putObject(mrl, m.bake(m.getDefaultState(), DefaultVertexFormats.ITEM, ModelLoader.defaultTextureGetter()));
             }
         }
@@ -200,10 +204,8 @@ public class LibRegistry {
     @SubscribeEvent
     public void onRegisterCustomModels(@Nonnull RegisterParticleEvent event) {
         PARTICLE_GLOW = ParticleRegistry.registerParticle("celephais", ParticleGlow.class, new ResourceLocation("celephais:particle/particle_glow"));
-        PARTICLE_SMOKE = ParticleRegistry.registerParticle("celephais", ParticleSmoke.class, new ResourceLocation("celephais:particle/particle_smoke"));
         PARTICLE_SPARK = ParticleRegistry.registerParticle("celephais", ParticleSpark.class, new ResourceLocation("celephais:particle/particle_sparkle"));
         PARTICLE_GLITTER = ParticleRegistry.registerParticle("celephais", ParticleGlitter.class, new ResourceLocation("celephais:particle/particle_sparkle"));
-        PARTICLE_FLAME = ParticleRegistry.registerParticle("celephais", ParticleFlame.class, new ResourceLocation("celephais:particle/particle_fire"));
     }
 
     public class RegisterTintedModelsEvent extends Event {

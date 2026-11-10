@@ -1,4 +1,4 @@
-package celephais.client.fx;
+package celephais.util.fx;
 
 import celephais.network.proxy.ClientProxy;
 import celephais.root.Main;

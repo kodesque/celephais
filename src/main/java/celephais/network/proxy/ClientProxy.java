@@ -1,15 +1,12 @@
 package celephais.network.proxy;
 
-import celephais.client.fx.EffectManager;
-import celephais.client.fx.FXHandler;
-import celephais.events.RegisterColorHandlersEvent;
-import celephais.events.RegisterParticleEvent;
-import celephais.util.CustomModelLoader;
-import celephais.util.Hax;
+import celephais.util.EffectManager;
 import celephais.util.LibRegistry;
-import celephais.util.ParticleRenderer;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
+import celephais.util.particle.ParticleRenderer;
+import celephais.util.fx.FXHandler;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -34,17 +31,21 @@ public class ClientProxy extends CommonProxy {
 
         LibRegistry.registerEntityRenders();
         MinecraftForge.EVENT_BUS.register(new EffectManager());
-        ModelLoaderRegistry.registerLoader(new CustomModelLoader());
         MinecraftForge.EVENT_BUS.post(new RegisterParticleEvent());
     }
 
     public void init(FMLInitializationEvent event) {
         super.init(event);
 
-        MinecraftForge.EVENT_BUS.post(new RegisterColorHandlersEvent());
     }
 
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
+    }
+
+    @Override
+    public void registerItemRenderer(Item item, int meta, String id) {
+
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
     }
 }

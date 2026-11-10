@@ -1,9 +1,11 @@
-package celephais.client.fx;
+package celephais.util.fx;
 
-import celephais.events.RegisterFXEvent;
+import celephais.client.fx.EffectBeam;
+import celephais.util.EffectManager;
+import celephais.client.fx.EffectSlash;
 import celephais.network.proxy.ClientProxy;
 import celephais.util.LibRegistry;
-import celephais.util.Util;
+import epicsquid.mysticallib.util.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

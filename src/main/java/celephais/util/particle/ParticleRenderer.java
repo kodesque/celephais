@@ -1,5 +1,6 @@
-package celephais.util;
+package celephais.util.particle;
 
+import celephais.api.IParticle;
 import celephais.network.proxy.ClientProxy;
 import celephais.root.Main;
 import net.minecraft.client.Minecraft;

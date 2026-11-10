@@ -1,7 +1,6 @@
-package celephais.client.fx;
+package celephais.client.particles;
 
-import celephais.util.ParticleBase;
-import celephais.util.Util;
+import celephais.common.templates.ParticleBase;
 import net.minecraft.world.World;
 
 public class ParticleSpark extends ParticleBase {

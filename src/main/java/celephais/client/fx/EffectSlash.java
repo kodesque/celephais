@@ -1,5 +1,6 @@
 package celephais.client.fx;
 
+import celephais.common.templates.EffectBase;
 import celephais.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -10,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EffectSlash extends Effect {
+public class EffectSlash extends EffectBase {
     public float yaw = 0.0F;
     public float pitch = 0.0F;
     public float slashAngle = 0.0F;

@@ -1,16 +1,16 @@
-package celephais.client.fx;
+package celephais.client.particles;
 
-import celephais.util.ParticleBase;
+import celephais.common.templates.ParticleBase;
 import net.minecraft.world.World;
 
-public class ParticleFlame extends ParticleBase {
+public class ParticleGlow extends ParticleBase {
     public float colorR = 0.0F;
     public float colorG = 0.0F;
     public float colorB = 0.0F;
     public float initScale = 0.0F;
     public float initAlpha = 0.0F;
 
-    public ParticleFlame(World world, double x, double y, double z, double vx, double vy, double vz, double[] data) {
+    public ParticleGlow(World world, double x, double y, double z, double vx, double vy, double vz, double[] data) {
         super(world, x, y, z, vx, vy, vz, data);
         this.colorR = (float)data[1];
         this.colorG = (float)data[2];
@@ -45,3 +45,4 @@ public class ParticleFlame extends ParticleBase {
         return true;
     }
 }
+

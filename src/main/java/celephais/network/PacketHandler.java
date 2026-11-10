@@ -1,6 +1,6 @@
 package celephais.network;
 
-import celephais.util.MessageEffect;
+import celephais.network.packets.PacketEffect;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -15,7 +15,7 @@ public class PacketHandler {
     }
 
     public static void registerMessages() {
-        INSTANCE.registerMessage(MessageEffect.MessageHolder.class, MessageEffect.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(PacketEffect.MessageHolder.class, PacketEffect.class, id++, Side.CLIENT);
     }
 
     public static <REQ extends IMessage, REPLY extends IMessage> void registerMessage(Class<? extends IMessageHandler<REQ, REPLY>> handler, Class<REQ> message, Side side) {

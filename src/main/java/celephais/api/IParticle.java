@@ -1,4 +1,4 @@
-package celephais.util;
+package celephais.api;
 
 public interface IParticle {
     boolean alive();

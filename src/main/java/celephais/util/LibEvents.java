@@ -1,7 +1,9 @@
 package celephais.util;
 
 import celephais.network.PacketHandler;
+import celephais.network.packets.PacketLeftClickEmpty;
 import celephais.network.proxy.ClientProxy;
+import celephais.util.particle.ParticleRegistry;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -64,6 +66,6 @@ public class LibEvents {
 
     @SubscribeEvent
     public void onLeftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
-        PacketHandler.INSTANCE.sendToServer(new MessageLeftClickEmpty(event.getEntityPlayer(), event.getHand(), event.getItemStack()));
+        PacketHandler.INSTANCE.sendToServer(new PacketLeftClickEmpty(event.getEntityPlayer(), event.getHand(), event.getItemStack()));
     }
 }

@@ -1,5 +1,6 @@
-package celephais.client.fx;
+package celephais.util;
 
+import celephais.common.templates.EffectBase;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -10,13 +11,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 
 public class EffectManager {
-    public static ArrayList<Effect> effects = new ArrayList();
-    public static ArrayList<Effect> toAdd = new ArrayList();
+    public static ArrayList<EffectBase> effects = new ArrayList();
+    public static ArrayList<EffectBase> toAdd = new ArrayList();
 
     public EffectManager() {
     }
 
-    public static void addEffect(Effect e) {
+    public static void addEffect(EffectBase e) {
         toAdd.add(e);
     }
 
@@ -25,8 +26,8 @@ public class EffectManager {
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.START && Minecraft.getMinecraft().player != null && Minecraft.getMinecraft().world != null) {
             for(int i = 0; i < effects.size(); ++i) {
-                if (!((Effect)effects.get(i)).dead) {
-                    ((Effect)effects.get(i)).update();
+                if (!((EffectBase)effects.get(i)).dead) {
+                    ((EffectBase)effects.get(i)).update();
                 }
             }
         }
@@ -39,7 +40,7 @@ public class EffectManager {
             toAdd.clear();
 
             for(int i = 0; i < effects.size(); ++i) {
-                if (((Effect)effects.get(i)).dead) {
+                if (((EffectBase)effects.get(i)).dead) {
                     effects.remove(i);
                     i = Math.max(0, i - 1);
                 }
@@ -52,7 +53,7 @@ public class EffectManager {
     @SubscribeEvent
     public void onRenderLast(RenderWorldLastEvent event) {
         for(int i = 0; i < effects.size(); ++i) {
-            ((Effect)effects.get(i)).renderTotal(event.getPartialTicks());
+            ((EffectBase)effects.get(i)).renderTotal(event.getPartialTicks());
         }
 
     }

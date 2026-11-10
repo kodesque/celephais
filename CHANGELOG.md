@@ -6,6 +6,7 @@
 
 ### Changed:
 - Restored mod source from byte code
+- Moved to RFG (Cleanroom template)
 - Merged MysticalLib
 
 ---
